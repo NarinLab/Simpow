@@ -10,4 +10,4 @@ Terdapat beberapa requirement untuk dapat mengkompilasi kode sumber firmware SIM
 3. Library 3, Link:
 
 ## Tata Cara / How To
-Setelah seluruh requirement terpenuhi, silahkan buka file **interface.ino** dan lakukan kompilasi / upload dengan memilih board ESP32 dan nomer port dari Serialnya. Proses upload firmware dilakukan seperti biasa ketika menggunakan Arduino IDE
+Setelah seluruh requirement terpenuhi, silahkan buka file **firmware.ino** dan lakukan kompilasi / upload dengan memilih board ESP32 dan nomer port dari Serialnya. Proses upload firmware dilakukan seperti biasa ketika menggunakan Arduino IDE
