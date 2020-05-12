@@ -8,8 +8,8 @@
 #include "EmonLib.h"
 
 /* START DEKLARASI VARIABLE GLOBAL */
-const char* SSID = "NamaWifi";
-const char* PWD = "Sandi";
+const char* SSID = "NAMA WIFI";
+const char* PWD = "PASS WIFI";
 #define PIN_SENSOR_SCT013 34
 /* STOP DEKLARASI VARIABLE GLOBAL */
 

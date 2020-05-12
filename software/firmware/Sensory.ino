@@ -4,7 +4,7 @@
  * @return Void
  */
 void sensory_setup(){
-    SENSOR_SCT013.current(PIN_SENSOR_SCT013, 111.1);
+    SENSOR_SCT013.current(PIN_SENSOR_SCT013, 230.0);
 }
 
 /*
