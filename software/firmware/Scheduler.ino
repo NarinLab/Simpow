@@ -20,9 +20,9 @@ void scheduler_print(){
   // Gunakan variable reference sebagai parameter
   sensory_get_sensor(sct013);
 
-  Log.notice(F("Tegangan: %.2f VAC" CR), sct013.tegangan);
-  Log.notice(F("Arus: %.2f Ampere" CR), sct013.arus);
-  Log.notice(F("Watt: %.2f Watt" CR), sct013.watt);
+  Log.notice(F("Tegangan: %F VAC" CR), sct013.tegangan);
+  Log.notice(F("Arus: %F Ampere" CR), sct013.arus);
+  Log.notice(F("Watt: %F Watt" CR), sct013.watt);
 }
 
 /* @brief Fungsi loop untuk menjalankan setiap 
@@ -30,13 +30,13 @@ void scheduler_print(){
  * @parameter None
  * @return Void
  */
-long SCHDULER_LAST_RUN_SHORT  = 0; // Counter jangka pendek (30 detik)
+long SCHDULER_LAST_RUN_SHORT  = 0; // Counter jangka pendek (5 detik)
 void scheduler_loop(){
   long NOW = millis();
 
-  // RUN_SHORT (Setiap 30 Detik)
-  if( (NOW - SCHDULER_LAST_RUN_SHORT) > 30000){
-     // Eksekusi fungsi yg akan dijalankan setiap 30 detik
+  // RUN_SHORT (Setiap 5 Detik)
+  if( (NOW - SCHDULER_LAST_RUN_SHORT) > 5000){
+     // Eksekusi fungsi yg akan dijalankan setiap 5 detik
      scheduler_print();
 
      // Reset counter RUN_SHORT dari 0 lagi
