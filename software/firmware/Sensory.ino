@@ -4,7 +4,8 @@
  * @return Void
  */
 void sensory_setup(){
-    SENSOR_SCT013.current(PIN_SENSOR_SCT013, 230.0);
+    analogReadResolution(12);
+    SENSOR_SCT013.current(PIN_SENSOR_SCT013, 30.0);
 }
 
 /*
@@ -14,7 +15,7 @@ void sensory_setup(){
  * @return Struct DATA
  */
 void sensory_get_sensor(SCT013 &sct013){
-  float tegangan = 230.0;
+  float tegangan = TEGANGAN_PLN;
   float arus = SENSOR_SCT013.calcIrms(1480);
   float watt = arus * tegangan;
 
