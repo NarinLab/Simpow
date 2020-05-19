@@ -6,16 +6,17 @@
 #include <ArduinoLog.h>
 #include "header.h"
 #include "EmonLib.h"
+#include "ThingSpeak.h"
+#include "secret.h"
 
 /* START DEKLARASI VARIABLE GLOBAL */
-const char* SSID = "NAMA WIFI";
-const char* PWD = "PASS WIFI";
 #define PIN_SENSOR_SCT013 34
 #define TEGANGAN_PLN 247.0
 /* STOP DEKLARASI VARIABLE GLOBAL */
 
 /* START INSTANSIASI OBJEK  */
 EnergyMonitor SENSOR_SCT013;
+WiFiClient  client;
 /* STOP INSTANSIASI OBJEK  */
 
 void setup() {
@@ -25,6 +26,7 @@ void setup() {
 
   networking_setup();
   sensory_setup();
+  cloud_setup();
   scheduler_setup();
 }
 
