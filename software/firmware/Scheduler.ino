@@ -9,20 +9,34 @@ void scheduler_setup(){}
  * @parameter None
  * @return Void
  */
-void scheduler_send(){}
+long SCHDULER_SEND_LAST_RUN  = 0;
+void scheduler_send(){
+  long NOW = millis();
+  if(NOW - SCHDULER_SEND_LAST_RUN > 30000){
+    cloud_publish();
+    
+    SCHDULER_SEND_LAST_RUN = NOW;
+  }  
+}
 
 /* @brief Fungsi untuk kirim/cetak data ke serial
  * @parameter None
  * @return Void
  */
+long SCHDULER_PRINT_LAST_RUN  = 0;
 void scheduler_print(){
-  SCT013 sct013;
-  // Gunakan variable reference sebagai parameter
-  sensory_get_sensor(sct013);
-
-  Log.notice(F("Tegangan: %F VAC" CR), sct013.tegangan);
-  Log.notice(F("Arus: %F Ampere" CR), sct013.arus);
-  Log.notice(F("Watt: %F Watt" CR), sct013.watt);
+  long NOW = millis();
+  if(NOW - SCHDULER_PRINT_LAST_RUN > 5000){
+    SCT013 sct013;
+    // Gunakan variable reference sebagai parameter
+    sensory_get_sensor(sct013);
+  
+    Log.notice(F("Tegangan: %F VAC" CR), sct013.tegangan);
+    Log.notice(F("Arus: %F Ampere" CR), sct013.arus);
+    Log.notice(F("Watt: %F Watt" CR), sct013.watt);  
+    
+    SCHDULER_PRINT_LAST_RUN = NOW;
+  }
 }
 
 /* @brief Fungsi loop untuk menjalankan setiap 
@@ -30,16 +44,7 @@ void scheduler_print(){
  * @parameter None
  * @return Void
  */
-long SCHDULER_LAST_RUN_SHORT  = 0; // Counter jangka pendek (5 detik)
 void scheduler_loop(){
-  long NOW = millis();
-
-  // RUN_SHORT (Setiap 5 Detik)
-  if( (NOW - SCHDULER_LAST_RUN_SHORT) > 5000){
-     // Eksekusi fungsi yg akan dijalankan setiap 5 detik
-     scheduler_print();
-
-     // Reset counter RUN_SHORT dari 0 lagi
-     SCHDULER_LAST_RUN_SHORT = NOW;
-  }
+  scheduler_print(); 
+  scheduler_send(); 
 }
