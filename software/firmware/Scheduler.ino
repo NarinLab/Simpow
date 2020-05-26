@@ -26,14 +26,13 @@ void scheduler_send(){
 long SCHDULER_PRINT_LAST_RUN  = 0;
 void scheduler_print(){
   long NOW = millis();
-  if(NOW - SCHDULER_PRINT_LAST_RUN > 5000){
+  if(NOW - SCHDULER_PRINT_LAST_RUN > 1000){
     SCT013 sct013;
     // Gunakan variable reference sebagai parameter
     sensory_get_sensor(sct013);
   
-    Log.notice(F("Tegangan: %F VAC" CR), sct013.tegangan);
-    Log.notice(F("Arus: %F Ampere" CR), sct013.arus);
-    Log.notice(F("Watt: %F Watt" CR), sct013.watt);  
+    Log.notice(F("Tegangan: %F VAC - Arus: %F Ampere - Watt: %F Watt - ICAL: %F - BRES: %F" CR), sct013.tegangan, sct013.arus, sct013.watt, sct013.ical, sct013.burden_res);
+
     
     SCHDULER_PRINT_LAST_RUN = NOW;
   }

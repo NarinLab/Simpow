@@ -2,16 +2,23 @@
  * Nama:
  * NIM:
  */
+#include "header.h"
+#include "secret.h"
 #include <WiFi.h>
 #include <ArduinoLog.h>
-#include "header.h"
-#include "EmonLib.h"
 #include "ThingSpeak.h"
-#include "secret.h"
+#include "EmonLib.h"
 
 /* START DEKLARASI VARIABLE GLOBAL */
-#define PIN_SENSOR_SCT013 34
-#define TEGANGAN_PLN 247.0
+#define ESP32 1
+#define PIN_SENSOR_SCT013 36
+#define TEGANGAN_PLN 225.0
+byte SAMLPING_COUNT = 1;
+float AREF = 3.3;
+int CTTURN = 2000;
+float MAX_PEAK_CURR = 100;
+float ICAL = 0;
+float BURDEN_RES = 0;
 /* STOP DEKLARASI VARIABLE GLOBAL */
 
 /* START INSTANSIASI OBJEK  */
