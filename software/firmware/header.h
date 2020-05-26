@@ -4,4 +4,6 @@ struct SCT013 {
   float watt;
   float KwH;
   float biaya;
+  float ical;
+  float burden_res;
 };
