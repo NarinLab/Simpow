@@ -29,7 +29,7 @@ WiFiClient  client;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  Log.begin(LOG_LEVEL_VERBOSE, &Serial);
+  Log.begin(LOG_LEVEL_NOTICE, &Serial);
 
   networking_setup();
   sensory_setup();

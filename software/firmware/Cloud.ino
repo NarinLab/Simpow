@@ -24,7 +24,7 @@ void cloud_publish(){
 
   int errorCode = ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
   if(errorCode == 200){
-    Log.notice(F("Berhasil publish data ke cloud." CR));
+    Log.verbose(F("Berhasil publish data ke cloud." CR));
   }
   else{
     Log.error(F("Gagal publish data ke cloud: %d" CR), errorCode);
