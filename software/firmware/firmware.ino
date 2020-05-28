@@ -14,7 +14,7 @@
 #define PIN_SENSOR_SCT013 36
 #define TEGANGAN_PLN 225.0
 byte SAMLPING_COUNT = 1;
-float AREF = 3.3;
+float AREF = 3.290;
 int CTTURN = 2000;
 float MAX_PEAK_CURR = 100;
 float ICAL = 0;
@@ -29,7 +29,7 @@ WiFiClient  client;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  Log.begin(LOG_LEVEL_NOTICE, &Serial);
+  Log.begin(LOG_LEVEL_VERBOSE, &Serial);
 
   networking_setup();
   sensory_setup();
