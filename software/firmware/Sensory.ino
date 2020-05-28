@@ -31,4 +31,5 @@ void sensory_get_sensor(SCT013 &sct013){
   sct013.watt = TEGANGAN_PLN * (arus / SAMLPING_COUNT);
   sct013.ical = ICAL;
   sct013.burden_res = BURDEN_RES;
+  sct013.rawSampleI = SENSOR_SCT013.getRawSampleI();
 }

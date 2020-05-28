@@ -178,7 +178,9 @@ void EnergyMonitor::calcVI(unsigned int crossings, unsigned int timeout)
 double EnergyMonitor::calcIrms(unsigned int Number_of_Samples)
 {
 
-  #if defined emonTxV3
+  #if defined ESP32
+	int SupplyVoltage=3.290;
+  #elif defined emonTxV3
     int SupplyVoltage=3300;
   #else
     int SupplyVoltage = readVcc();
@@ -188,7 +190,6 @@ double EnergyMonitor::calcIrms(unsigned int Number_of_Samples)
   for (unsigned int n = 0; n < Number_of_Samples; n++)
   {
     sampleI = analogRead(inPinI);
-
     // Digital low pass filter extracts the 2.5 V or 1.65 V dc offset,
     //  then subtract this - signal is now centered on 0 counts.
     offsetI = (offsetI + (sampleI-offsetI)/ADC_COUNTS);
@@ -200,7 +201,7 @@ double EnergyMonitor::calcIrms(unsigned int Number_of_Samples)
     // 2) sum
     sumI += sqI;
   }
-
+  rawSampleI = sumI / Number_of_Samples;
   double I_RATIO = ICAL *((SupplyVoltage/1000.0) / (ADC_COUNTS));
   Irms = I_RATIO * sqrt(sumI / Number_of_Samples);
 
@@ -209,6 +210,11 @@ double EnergyMonitor::calcIrms(unsigned int Number_of_Samples)
   //--------------------------------------------------------------------------------------
 
   return Irms;
+}
+
+int EnergyMonitor::getRawSampleI()
+{
+  return rawSampleI;
 }
 
 void EnergyMonitor::serialprint()
@@ -231,7 +237,11 @@ void EnergyMonitor::serialprint()
 
 long EnergyMonitor::readVcc() {
   long result;
-
+  
+  #if defined ESP32
+  return (3.290);
+  #endif
+  
   //not used on emonTx V3 - as Vcc is always 3.3V - eliminates bandgap error and need for calibration http://harizanov.com/2013/09/thoughts-on-avr-adc-accuracy/
 
   #if defined(__AVR_ATmega168__) || defined(__AVR_ATmega328__) || defined (__AVR_ATmega328P__)

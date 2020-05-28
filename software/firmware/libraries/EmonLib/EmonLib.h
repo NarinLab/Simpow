@@ -60,6 +60,7 @@ class EnergyMonitor
     void calcVI(unsigned int crossings, unsigned int timeout);
     double calcIrms(unsigned int NUMBER_OF_SAMPLES);
     void serialprint();
+	int getRawSampleI();
 
     long readVcc();
     //Useful value variables
@@ -67,7 +68,8 @@ class EnergyMonitor
            apparentPower,
            powerFactor,
            Vrms,
-           Irms;
+           Irms,
+		   rawSampleI;
 
   private:
 

@@ -6,4 +6,5 @@ struct SCT013 {
   float biaya;
   float ical;
   float burden_res;
+  int rawSampleI;
 };

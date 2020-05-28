@@ -31,8 +31,7 @@ void scheduler_print(){
     // Gunakan variable reference sebagai parameter
     sensory_get_sensor(sct013);
   
-    Log.notice(F("Tegangan: %F VAC - Arus: %F Ampere - Watt: %F Watt - ICAL: %F - BRES: %F" CR), sct013.tegangan, sct013.arus, sct013.watt, sct013.ical, sct013.burden_res);
-
+    Log.notice(F("RAWI:%d VOL:%d IRMS:%F WATT:%F ICAL:%F BRES:%F" CR), sct013.rawSampleI, sct013.tegangan, sct013.arus, sct013.watt, sct013.ical, sct013.burden_res);
     
     SCHDULER_PRINT_LAST_RUN = NOW;
   }
